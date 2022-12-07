@@ -1,15 +1,26 @@
 const axios = require("axios");
+const { Type } = require("../db");
 
 async function getAllTypes() {
-  const types = await axios.get("https://pokeapi.co/api/v2/type");
+  const typeDb = Type.findAll();
 
-  // const array = Array.from(types);
+  if (!typeDb.length) {
+    const types = await axios
+      .get("https://pokeapi.glitch.me/v1/types")
+      .then((res) => res.data);
+    //cambiar la api
 
-  // const map = array.results.map((e) => {
-  //   return {
-  //     name: e.name,
-  //   };
-  // });
+    const map = types.map((e) => {
+      return {
+        name: e,
+      };
+    });
+
+    Type.bulkCreate(map);
+    return map;
+  } else {
+    return typeDb;
+  }
 }
 module.exports = {
   getAllTypes,

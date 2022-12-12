@@ -43,8 +43,8 @@ module.exports = (sequelize) => {
       // unique: true,
     },
     type: {
-      type: DataTypes.STRING,
-      // allowNull: false,
+      type: DataTypes.ARRAY(DataTypes.STRING),
+      allowNull: false,
       // unique: true,
     },
   });

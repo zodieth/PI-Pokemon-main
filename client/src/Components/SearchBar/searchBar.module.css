@@ -1,0 +1,52 @@
+.go {
+  width: 20px;
+  color: white;
+  background-color: rgb(16, 55, 65);
+  padding: 0px 25px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #edf0f1;
+}
+
+.searchBar {
+  padding: 9px 25px;
+  background-color: rgba(0, 136, 169, 1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  display: flex;
+  align-items: center;
+}
+
+input {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #edf0f1;
+  text-decoration: none;
+}
+
+.input {
+  border: none;
+  background-color: rgba(0, 136, 169, 1);
+  text-decoration: none;
+  outline: none;
+}
+
+.input::placeholder {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #edf0f1;
+  text-decoration: none;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+}

@@ -6,6 +6,7 @@ import { getAllPokemons } from "../../Redux/actions";
 import { Link } from "react-router-dom";
 import style from "./cards.module.css";
 import Paginado from "../Paginado/Paginado";
+import "../../Components/loadingSpin.css";
 
 function Cards() {
   let pokemonsState = useSelector((state) => state.pokemons);
@@ -41,11 +42,11 @@ function Cards() {
         {currentPokemons.length > 0 ? (
           currentPokemons.map((c) => (
             <Link key={c.id} to={`/pokemons/${c.id}`}>
-              <Card key={c.id} name={c.name} />
+              <Card key={c.id} name={c.name} img={c.img} type={c.type} />
             </Link>
           ))
         ) : (
-          <h2>loading..</h2>
+          <div className="loading"></div>
         )}
       </div>
     </div>

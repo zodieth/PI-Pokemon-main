@@ -19,9 +19,25 @@ button {
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 30px 10%;
+}
+
+.everything {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.form {
+  margin-right: 10rem;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .logo {

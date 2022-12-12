@@ -1,7 +1,8 @@
 .container {
   display: flex;
   flex-direction: column;
-  border: 0.25rem solid black;
+  /* border: 0.25rem solid black; */
+  background-color: white;
   border-radius: 2rem;
   padding: 3rem;
   justify-content: center;
@@ -10,11 +11,29 @@
 
   width: fit-content;
   height: fit-content;
+  transition: all 0.4s;
+}
+
+.container:hover {
+  transform: scale(1.05);
+}
+
+.type {
+  padding: 6px 20px;
+  background-color: rgb(230, 57, 70);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  display: inline-block;
+  margin: 0.25rem;
 }
 
 .name {
+  color: black;
   width: 300px;
   height: 50px;
+  background-color: white;
 }
 
 .step {
@@ -22,14 +41,15 @@
   /* height: fit-content; */
 }
 
-.diets {
-  width: 300px;
-  height: 30px;
+.container_types {
+  background-color: white;
 }
 
 .img {
-  width: 200px;
-  height: 200px;
+  background-color: white;
+
+  /* width: 200px;
+  height: 200px; */
 
   /* border-radius: 1rem; */
 }

@@ -18,6 +18,12 @@ function NavBar() {
           />
         </Route>
 
+        <Route exact path="/pokemon/:name">
+          <Link to="/home">
+            <img className={style.logo} src={logo} alt="" />
+          </Link>
+        </Route>
+
         <Route exact path="/pokemons/:id">
           <Link to="/home">
             <img className={style.logo} src={logo} alt="" />
@@ -33,6 +39,11 @@ function NavBar() {
                 </li>
               </Route>
               <Route exact path="/pokemons/:id">
+                <li>
+                  <Link to="/home">Home</Link>
+                </li>
+              </Route>
+              <Route exact path="/pokemon/:name">
                 <li>
                   <Link to="/home">Home</Link>
                 </li>

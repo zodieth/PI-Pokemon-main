@@ -6,6 +6,7 @@ const {
 } = require("../controllers/getPokemons");
 const postPokemonMiddleware = require("../middleware/post");
 const { Pokemon, Type } = require("../db");
+const { GetAllPokemon } = require("../controllers/getOnlyPokemons");
 
 const PokemonRouter = Router();
 
@@ -27,10 +28,11 @@ PokemonRouter.get("/:id", async (req, res) => {
 });
 
 PokemonRouter.post("/", postPokemonMiddleware, async (req, res) => {
-  const { name, type } = req.body;
+  const { name, type, img } = req.body;
   const newPokemon = await Pokemon.create({
     name: name,
     type: type,
+    img: img,
   });
 
   // const db = await Type.findAll({

@@ -39,6 +39,7 @@ async function getAllTypes() {
       )
       .then((map) => types.push(map));
 
+    await Type.bulkCreate(types[0]);
     return types[0];
   } else {
     return typeDb;

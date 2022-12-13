@@ -14,8 +14,8 @@ function Cards() {
 
   //--------------Paginado-----------------------
   const [currentPage, setCurrentPage] = useState(1);
-  const [pokemonsPerPage] = useState(9);
-  const LastPokemons = currentPage * pokemonsPerPage; // 9
+  const [pokemonsPerPage] = useState(12);
+  const LastPokemons = currentPage * pokemonsPerPage; //
   const FirstPokemon = LastPokemons - pokemonsPerPage; // 0
   const currentPokemons = pokemonsState.slice(FirstPokemon, LastPokemons);
 

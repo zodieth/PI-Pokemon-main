@@ -5,6 +5,7 @@ import { getPokemonId } from "../Redux/actions";
 import NavBar from "../Components/NavBar/NavBar";
 import Card from "../Components/Card/Card";
 import style from "./detail.module.css";
+import "./loadingSpin.css";
 
 function Detail() {
   const { id } = useParams();
@@ -16,7 +17,7 @@ function Detail() {
 
   useEffect(() => {
     dispatch(getPokemonId(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   return (
     <div className={style.container}>
@@ -29,10 +30,9 @@ function Detail() {
             <Card key={c.id} name={c.name} img={c.img} type={c.type} />
           ))
         ) : (
-          <h1>loading..</h1>
+          <div className="loading"></div>
         )}
       </div>
-      <div>{console.log(iDState)}</div>
     </div>
   );
 }

@@ -1,8 +1,9 @@
-import { GET_POKEMONS, GET_POKEMONS_ID } from "./actions";
-
+import { GET_POKEMONS, GET_POKEMONS_ID, GET_POKEMONS_NAME } from "./actions";
+// const { Pokemon } = require("../../../api/src/db");
 export let initialState = {
   pokemons: [],
   pokemonById: [],
+  pokemonByName: [],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -17,6 +18,12 @@ const rootReducer = (state = initialState, action) => {
       return {
         ...state,
         pokemonById: action.payload,
+      };
+    }
+    case GET_POKEMONS_NAME: {
+      return {
+        ...state,
+        pokemonByName: action.payload,
       };
     }
     default:

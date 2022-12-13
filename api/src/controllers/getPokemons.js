@@ -1,61 +1,26 @@
 const axios = require("axios");
 // const { default: fetch } = require("node-fetch");
 const fetch = require("node-fetch");
-const { Pokemon } = require("../db");
+const { Pokemon, Type } = require("../db");
 const { getAllTypes } = require("./getTypes");
 
-// async function getAllPokemons() {
-//   await getAllTypes();
-
-//   try {
-//     const pokemonsDb = await Pokemon.findAll();
-
-//     if (pokemonsDb.length) {
-//       return pokemonsDb;
-//     }
-
-//     if (!pokemonsDb.length) {
-//       const baseURL = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=100`;
-//       const res = await fetch(`${baseURL}`);
-//       const data = await res.json();
-
-//       const map = data.results.map(async (e) => {
-//         return {
-//           name: e.name,
-//         };
-//       });
-//       Pokemon.bulkCreate(map);
-//       const pokemonsDb = Pokemon.findAll();
-
-//       console.log("DB Created");
-//       return pokemonsDb;
-//     }
-//   } catch (error) {
-//     res.status.send(error);
-//   }
-// }
-
 async function getAllPokemons() {
-  const pokemonDb = await Pokemon.findAll();
-  if (!pokemonDb.length) {
-    const baseURL = `https://pokeapi.co/api/v2/pokemon/?offset=0&limit=90`;
-
-    const info = [];
-
-    await fetch(baseURL)
+  const firstPetition = async () => {
+    const api1 = await fetch(`https://pokeapi.co/api/v2/pokemon/`)
       .then((res) => res.json())
+      .then((data) => data.results)
       .then(
         async (data) =>
-          await data.results.map(async (e) => {
+          await data.map(async (e) => {
             const url1 = await fetch(e.url);
             const data1 = await url1.json();
             // ----------------------
             const url2 = await fetch(data1.forms[0].url);
             const data2 = await url2.json();
-
             return {
               name: e.name,
               img: data2.sprites.front_default,
+              id: data2.id,
               type:
                 data2.types[0] && data2.types[1] && data2.types[2]
                   ? [
@@ -68,59 +33,148 @@ async function getAllPokemons() {
                   : data2.types[0]
                   ? [data2.types[0].type.name]
                   : "nothing",
+              life: data1.stats[0].base_stat,
+              strength: data1.stats[1].base_stat,
+              defense: data1.stats[2].base_stat,
+              speed: data1.stats[3].base_stat,
+              height: data1.height,
+              weight: data1.weight,
             };
           })
       )
       .then(async (data) => await Promise.all(data))
+      .then((data) => data);
 
-      .then((data) => info.push(data));
+    return api1;
+  };
 
-    // return info;
+  const secondPetition = async () => {
+    const api2 = await fetch(`https://pokeapi.co/api/v2/pokemon/`)
+      .then((res) => res.json())
+      .then(async (data) => await fetch(data.next))
+      .then((res) => res.json())
+      .then((data) => data.results)
+      .then(
+        async (data) =>
+          await data.map(async (e) => {
+            const url1 = await fetch(e.url);
+            const data1 = await url1.json();
+            // ----------------------
+            const url2 = await fetch(data1.forms[0].url);
+            const data2 = await url2.json();
+            return {
+              name: e.name,
+              img: data2.sprites.front_default,
+              id: data2.id,
+              type:
+                data2.types[0] && data2.types[1] && data2.types[2]
+                  ? [
+                      data2.types[0].type.name,
+                      data2.types[1].type.name,
+                      data2.types[2].type.name,
+                    ]
+                  : data2.types[0] && data2.types[1]
+                  ? [data2.types[0].type.name, data2.types[1].type.name]
+                  : data2.types[0]
+                  ? [data2.types[0].type.name]
+                  : "nothing",
+              life: data1.stats[0].base_stat,
+              strength: data1.stats[1].base_stat,
+              defense: data1.stats[2].base_stat,
+              speed: data1.stats[3].base_stat,
+              height: data1.height,
+              weight: data1.weight,
+            };
+          })
+      )
+      .then(async (data) => await Promise.all(data))
+      .then((data) => data);
 
-    await Pokemon.bulkCreate(info[0]);
-    const pokemonsDb = await Pokemon.findAll();
+    return api2;
+  };
 
-    console.log("DB Created");
-    return pokemonsDb;
-  } else {
-    return pokemonDb;
-  }
+  const getDb = async () => {
+    try {
+      const results = await Pokemon.findAll({
+        include: {
+          model: Type,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
+        },
+      });
+      return results;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const firstReq = await firstPetition();
+  const secondReq = await secondPetition();
+  const getAllDatabase = await getDb();
+  const info = getAllDatabase.concat(firstReq).concat(secondReq);
+  return info;
 }
 
 async function getPokemonById(id) {
-  // const baseURL = `https://pokeapi.co/api/v2/pokemon/${id}`;
-  // const res = await fetch(`${baseURL}`);
-  // const data = await res.json();
+  const baseURL = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(`${baseURL}`);
+  const data = await res.json();
 
-  // const sprite = await fetch(`https://pokeapi.co/api/v2/pokemon-form/${id}`);
+  const sprite = await fetch(`https://pokeapi.co/api/v2/pokemon-form/${id}`);
 
-  // const spiteJson = await sprite.json();
+  const spiteJson = await sprite.json();
+  const data2 = await spiteJson;
 
-  // const map = data.forms.map((e) => {
-  //   return {
-  //     name: e.name,
-  //     img: spiteJson.sprites.front_default,
-  //   };
-  // });
-
-  // return map;
-  const pokemonById = Pokemon.findAll({
-    where: {
-      id: id,
-    },
+  const map = data.forms.map((e) => {
+    return {
+      name: e.name,
+      img: spiteJson.sprites.front_default,
+      id: spiteJson.id,
+      type:
+        data2.types[0] && data2.types[1] && data2.types[2]
+          ? [
+              data2.types[0].type.name,
+              data2.types[1].type.name,
+              data2.types[2].type.name,
+            ]
+          : data2.types[0] && data2.types[1]
+          ? [data2.types[0].type.name, data2.types[1].type.name]
+          : data2.types[0]
+          ? [data2.types[0].type.name]
+          : "nothing",
+    };
   });
 
-  return pokemonById;
+  return map;
 }
 
 async function getPokemonByName(name) {
-  const pokemonsDb = Pokemon.findAll({
-    where: {
-      name: name,
-    },
+  // const pokemonsDb = Pokemon.findAll({
+  //   where: {
+  //     name: name,
+  //   },
+  // });
+
+  // return pokemonsDb;
+
+  const baseURL = `https://pokeapi.co/api/v2/pokemon/${name}`;
+  const res = await fetch(`${baseURL}`);
+  const data = await res.json();
+
+  const sprite = await fetch(`https://pokeapi.co/api/v2/pokemon-form/${name}`);
+
+  const spiteJson = await sprite.json();
+
+  const map = data.forms.map((e) => {
+    return {
+      name: e.name,
+      img: spiteJson.sprites.front_default,
+    };
   });
 
-  return pokemonsDb;
+  return map;
 }
 
 module.exports = {

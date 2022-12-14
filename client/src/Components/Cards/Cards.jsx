@@ -41,7 +41,7 @@ function Cards() {
       <div className={style.container}>
         {currentPokemons.length > 0 ? (
           currentPokemons.map((c) => (
-            <Link key={c.id} to={`/pokemons/${c.id}`}>
+            <Link key={c.id} to={`/pokemons/id/${c.id}`}>
               <Card key={c.id} name={c.name} img={c.img} type={c.type} />
             </Link>
           ))

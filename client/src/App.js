@@ -12,8 +12,8 @@ function App() {
       <div>
         <Route exact path="/" component={Landing} />
         <Route exact path="/home" component={Home} />
-        <Route exact path="/pokemons/:id" component={Detail} />
-        <Route exact path="/pokemon/:name" component={Name} />
+        <Route exact path="/pokemons/id/:id" component={Detail} />
+        <Route exact path={`/pokemon/:name`} component={Name} />
         <Route exact path="/form" component={Form} />
       </div>
     </div>

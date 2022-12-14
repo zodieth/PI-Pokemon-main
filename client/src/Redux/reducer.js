@@ -17,13 +17,13 @@ const rootReducer = (state = initialState, action) => {
     case GET_POKEMONS_ID: {
       return {
         ...state,
-        pokemonById: action.payload,
+        pokemonById: [action.payload],
       };
     }
     case GET_POKEMONS_NAME: {
       return {
         ...state,
-        pokemonByName: action.payload,
+        pokemonByName: [action.payload],
       };
     }
     default:

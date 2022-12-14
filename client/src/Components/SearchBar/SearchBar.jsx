@@ -3,6 +3,9 @@ import { useState } from "react";
 import style from "./searchBar.module.css";
 import { searchName } from "../../Redux/actions";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+
+// import { searchName } from "../../Redux/actions";
 
 function SearchBar() {
   const [input, setInput] = useState("");
@@ -11,10 +14,7 @@ function SearchBar() {
     setInput(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    // e.preventDefault();
-    searchName(input);
-  };
+  const handleSubmit = (e) => {};
 
   return (
     <div className={style.container}>

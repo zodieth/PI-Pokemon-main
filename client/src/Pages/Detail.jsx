@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPokemonId } from "../Redux/actions";
@@ -8,16 +8,23 @@ import style from "./detail.module.css";
 import "./loadingSpin.css";
 
 function Detail() {
-  const { id } = useParams();
-  const iDState = useSelector((state) => state.pokemonById);
-
-  console.log(iDState);
-
   const dispatch = useDispatch();
-
+  const { id } = useParams();
   useEffect(() => {
     dispatch(getPokemonId(id));
-  }, [dispatch, id]);
+  }, [dispatch]);
+
+  const iDState = useSelector((state) => state.pokemonById);
+
+  const [showComponent, setComponent] = useState(true);
+  const [showComponentCard, setComponentCard] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setComponent(false);
+      setComponentCard(true);
+    }, 500);
+  }, []);
 
   return (
     <div className={style.container}>
@@ -25,12 +32,17 @@ function Detail() {
         <NavBar />
       </div>
       <div className={style.card}>
-        {iDState.length > 0 ? (
-          iDState.map((c) => (
-            <Card key={c.id} name={c.name} img={c.img} type={c.type} />
-          ))
-        ) : (
-          <div className="loading"></div>
+        {showComponent && <div className="loading"></div>}
+        {showComponentCard && (
+          <div>
+            {iDState.length > 0 ? (
+              iDState.map((c) => (
+                <Card key={c.id} name={c.name} img={c.img} type={c.type} />
+              ))
+            ) : (
+              <div className="loading"></div>
+            )}
+          </div>
         )}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Card from "../Components/Card/Card";
@@ -19,17 +19,33 @@ function Name() {
 
   const nameState = useSelector((state) => state.pokemonByName);
 
-  console.log(nameState);
+  const [showComponent, setComponent] = useState(true);
+  const [showComponentCard, setComponentCard] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setComponent(false);
+      setComponentCard(true);
+    }, 500);
+  }, []);
+
   return (
     <div>
       <NavBar />
       <div className="cards">
-        {nameState ? (
-          nameState.map((e) => {
-            return <Card key={e.id} name={e.name} img={e.img} type={e.type} />;
-          })
-        ) : (
-          <div className="loading"></div>
+        {showComponent && <div className="loading"></div>}
+        {showComponentCard && (
+          <div>
+            {nameState ? (
+              nameState.map((e) => {
+                return (
+                  <Card key={e.id} name={e.name} img={e.img} type={e.type} />
+                );
+              })
+            ) : (
+              <div className="loading"></div>
+            )}
+          </div>
         )}
       </div>
     </div>

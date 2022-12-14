@@ -24,7 +24,7 @@ function NavBar() {
           </Link>
         </Route>
 
-        <Route exact path="/pokemons/:id">
+        <Route exact path="/pokemons/id/:id">
           <Link to="/home">
             <img className={style.logo} src={logo} alt="" />
           </Link>
@@ -38,7 +38,7 @@ function NavBar() {
                   <Link to="#">Home</Link>
                 </li>
               </Route>
-              <Route exact path="/pokemons/:id">
+              <Route exact path="/pokemons/id/:id">
                 <li>
                   <Link to="/home">Home</Link>
                 </li>

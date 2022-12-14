@@ -1,6 +1,7 @@
 const axios = require("axios");
 // const { default: fetch } = require("node-fetch");
 const fetch = require("node-fetch");
+const { LOCK } = require("sequelize");
 const { Pokemon, Type } = require("../db");
 const { getAllTypes } = require("./getTypes");
 
@@ -114,67 +115,32 @@ async function getAllPokemons() {
   const secondReq = await secondPetition();
   const getAllDatabase = await getDb();
   const info = getAllDatabase.concat(firstReq).concat(secondReq);
+
   return info;
 }
 
 async function getPokemonById(id) {
-  const baseURL = `https://pokeapi.co/api/v2/pokemon/${id}`;
-  const res = await fetch(`${baseURL}`);
-  const data = await res.json();
-
-  const sprite = await fetch(`https://pokeapi.co/api/v2/pokemon-form/${id}`);
-
-  const spiteJson = await sprite.json();
-  const data2 = await spiteJson;
-
-  const map = data.forms.map((e) => {
-    return {
-      name: e.name,
-      img: spiteJson.sprites.front_default,
-      id: spiteJson.id,
-      type:
-        data2.types[0] && data2.types[1] && data2.types[2]
-          ? [
-              data2.types[0].type.name,
-              data2.types[1].type.name,
-              data2.types[2].type.name,
-            ]
-          : data2.types[0] && data2.types[1]
-          ? [data2.types[0].type.name, data2.types[1].type.name]
-          : data2.types[0]
-          ? [data2.types[0].type.name]
-          : "nothing",
-    };
-  });
-
-  return map;
+  try {
+    const pokemons = await getAllPokemons();
+    if (id) {
+      const filter = pokemons.find((e) => e.id == id);
+      return filter;
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 async function getPokemonByName(name) {
-  // const pokemonsDb = Pokemon.findAll({
-  //   where: {
-  //     name: name,
-  //   },
-  // });
-
-  // return pokemonsDb;
-
-  const baseURL = `https://pokeapi.co/api/v2/pokemon/${name}`;
-  const res = await fetch(`${baseURL}`);
-  const data = await res.json();
-
-  const sprite = await fetch(`https://pokeapi.co/api/v2/pokemon-form/${name}`);
-
-  const spiteJson = await sprite.json();
-
-  const map = data.forms.map((e) => {
-    return {
-      name: e.name,
-      img: spiteJson.sprites.front_default,
-    };
-  });
-
-  return map;
+  try {
+    const pokemons = await getAllPokemons();
+    if (name) {
+      const filter = pokemons.find((e) => e.name == name);
+      return filter;
+    }
+  } catch (error) {
+    console.log(error);
+  }
 }
 
 module.exports = {

@@ -1,8 +1,13 @@
 const postPokemonMiddleware = (req, res, next) => {
-  const { name } = req.body;
+  const { name, type, img } = req.body;
   if (!name) {
-    // alert("Name is required");
     res.status(404).send("Name is required");
+  }
+  if (!type) {
+    res.status(404).send("Type is required");
+  }
+  if (!img) {
+    res.status(404).send("Image is required");
   }
   next();
 };

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "../Card/Card";
-import { getAllPokemons } from "../../Redux/actions";
+import { getAllPokemons, filterOrder } from "../../Redux/actions";
 import { Link } from "react-router-dom";
 import style from "./cards.module.css";
 import Paginado from "../Paginado/Paginado";
@@ -29,15 +29,33 @@ function Cards() {
     dispatch(getAllPokemons());
   }, [dispatch]);
 
+  const handleChange = (e) => {
+    if (!e.target.value.length) {
+      e.preventDefault();
+    } else {
+      dispatch(filterOrder(e.target.value));
+    }
+  };
+
   return (
     <div>
-      <div>
-        <Paginado
-          pokemonsPerPage={pokemonsPerPage}
-          pokemonsState={pokemonsState.length}
-          paginado={paginado}
-        />
+      <div className={style.paginado_filters}>
+        <div>
+          <Paginado
+            pokemonsPerPage={pokemonsPerPage}
+            pokemonsState={pokemonsState.length}
+            paginado={paginado}
+          />
+        </div>
+        <div className={style.filters}>
+          <select onChange={handleChange}>
+            <option>FILTERS</option>
+            <option value="A-Z">A-Z</option>
+            <option value="Z-A">Z-A</option>
+          </select>
+        </div>
       </div>
+
       <div className={style.container}>
         {currentPokemons.length > 0 ? (
           currentPokemons.map((c) => (

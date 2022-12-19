@@ -8,3 +8,29 @@
   width: 86rem;
   margin: 3rem;
 }
+
+.paginado_filters {
+  /* /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+  display: inline-flex;
+}
+
+.filters {
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.6rem;
+}
+
+select {
+  margin: 1rem;
+  padding: 6px 20px;
+  background-color: rgb(230, 57, 70);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  display: inline-block;
+  color: white;
+}

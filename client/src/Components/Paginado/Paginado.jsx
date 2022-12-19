@@ -1,5 +1,7 @@
 import React from "react";
 import style from "./paginado.module.css";
+// import { useDispatch } from "react-redux";
+// import { filterOrder } from "../../Redux/actions";
 
 function Paginado({ paginado, pokemonsPerPage, pokemonsState }) {
   const pageNumbers = [];
@@ -7,6 +9,7 @@ function Paginado({ paginado, pokemonsPerPage, pokemonsState }) {
   for (let i = 1; i < Math.ceil(pokemonsState / pokemonsPerPage); i++) {
     pageNumbers.push(i);
   }
+
   return (
     <nav>
       <ul className={style.paginado}>

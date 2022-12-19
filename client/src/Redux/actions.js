@@ -2,6 +2,7 @@ import axios from "axios";
 export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKEMONS_ID = "GET_POKEMONS_ID";
 export const GET_POKEMONS_NAME = "GET_POKEMONS_NAME";
+export const FILTER_ORDER = "FILTER_ORDER";
 
 export const getAllPokemons = () => {
   return async (dispatch) => {
@@ -24,6 +25,13 @@ export const searchName = (name) => {
       `http://localhost:3001/pokemons?name=${name}`
     );
     dispatch({ type: GET_POKEMONS_NAME, payload: pokemon.data });
+  };
+};
+
+export const filterOrder = (payload) => {
+  return {
+    type: FILTER_ORDER,
+    payload,
   };
 };
 

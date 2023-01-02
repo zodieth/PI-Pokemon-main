@@ -6,8 +6,6 @@ import NavBar from "../Components/NavBar/NavBar";
 import style from "./form.module.css";
 
 function Form() {
-  const types = [];
-
   // const [input, setInput] = useState({
   //   name: "",
   //   img: "",
@@ -28,7 +26,7 @@ function Form() {
   const [velocity, setVelocity] = useState(0);
   const [height, setheight] = useState(0);
   const [weight, setWeight] = useState(0);
-  const [type, setType] = useState([]);
+  const [type, setType] = useState("");
 
   const dispatch = useDispatch();
 
@@ -57,7 +55,40 @@ function Form() {
   ) => {
     if (name.length <= 3) {
       alert("name must have more than 3 characters");
+    } else if (img > 3) {
+      alert("must provide an image");
+    } else if (
+      health < 1 ||
+      attack < 1 ||
+      defense < 1 ||
+      velocity < 1 ||
+      height < 1 ||
+      weight < 1
+    ) {
+      alert("must be at least 1 type");
+    } else if (!type) {
+      alert("must be at least 1 type");
+    } else {
+      dispatch(createPokemon(pokemon));
     }
+    // else if (health < 1) {
+    //   alert("health must be at least 1");
+    // } else if (attack < 1) {
+    //   alert("attack must be at least 1");
+    // } else if (defense < 1) {
+    //   alert("defensemust be at least 1");
+    // } else if (velocity < 1) {
+    //   alert("velocity must be at least 1");
+    // } else if (height < 1) {
+    //   alert("height must be at least 1");
+    // } else if (height < 1) {
+    //   alert("height must be at least 1");
+    // } else if (weight < 1) {
+    //   alert("weight must be at least 1");
+    // } else if (type === "") {
+    //   alert("must be at least 1 type");
+    // }
+
     // if (
     //   health.length < 1 ||
     //   attack.length < 1 ||
@@ -72,10 +103,17 @@ function Form() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validate(name)) {
-      console.log("validate");
-    }
-    dispatch(createPokemon(pokemon));
+    validate(
+      name,
+      img,
+      health,
+      attack,
+      defense,
+      velocity,
+      height,
+      weight,
+      type
+    );
     console.log(pokemon);
   };
 
@@ -104,7 +142,7 @@ function Form() {
               name="type"
             >
               <option>TYPES</option>
-              <option nane="bug">bug</option>
+              <option name="bug">bug</option>
               <option name="ghost">ghost</option>
               <option name="steel">steel</option>
               <option name="fire">fire</option>
@@ -120,7 +158,43 @@ function Form() {
               <option name="shadow">shadow</option>
             </select>
           </label>
-          <div> {type}</div>
+          <div className={style.types}>
+            {type[0] && type[1] && type[2] ? (
+              <div>
+                <div>
+                  {type[0]}
+                  <div className={style.delete}>X</div>
+                </div>
+                <div>
+                  {type[1]} <div className={style.delete}>X</div>
+                </div>
+                <div>
+                  {type[2]}
+                  <div className={style.delete}>X</div>
+                </div>
+              </div>
+            ) : type[0] && type[1] ? (
+              <div>
+                <div>
+                  {type[0]}
+                  <div className={style.delete}>X</div>
+                </div>
+                <div>
+                  {type[1]}
+                  <div className={style.delete}>X</div>
+                </div>
+              </div>
+            ) : type[0] ? (
+              <div>
+                <div>
+                  {type[0]}
+                  <div className={style.delete}>X</div>
+                </div>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
           <label htmlFor="">
             Image
             <input
@@ -202,7 +276,7 @@ function Form() {
               value={height}
               type="range"
               min="0"
-              max="10"
+              max="100"
               step="1"
               onChange={(e) => setheight(e.target.value)}
             />
@@ -217,7 +291,7 @@ function Form() {
               value={weight}
               type="range"
               min="0"
-              max="10"
+              max="1000"
               step="1"
               onChange={(e) => setWeight(e.target.value)}
             />

@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+
 .form {
   display: flex;
   flex-direction: column;
@@ -14,6 +16,8 @@
 }
 
 form {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
   color: black;
   background-color: white;
   display: flex;
@@ -22,6 +26,18 @@ form {
   border-radius: 10px;
 }
 
+.delete {
+  padding: 6px 20px;
+  background-color: rgb(230, 57, 70);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  display: inline-block;
+  margin: 0.25rem;
+  color: white;
+  font-size: 0.75rem;
+}
 .type {
   margin-bottom: 1rem;
 }

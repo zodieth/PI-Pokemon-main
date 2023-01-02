@@ -48,7 +48,7 @@ const rootReducer = (state = initialState, action) => {
           if (a.name.toUpperCase() > b.name.toUpperCase()) return -1;
           else return -1;
         });
-      } else if (action.payload === "FILTERS") {
+      } else if (action.payload === "ORDER") {
         order = [...state.pokemons];
       } else if (action.payload === "UP") {
         order = copyPokemons.sort((a, b) => {
@@ -61,16 +61,16 @@ const rootReducer = (state = initialState, action) => {
           else return -1;
         });
       } else if (action.payload === "ATTACK") {
-        order = [...state.pokemons];
+        order = [...state.allPoke];
       }
 
       return {
-        // ...state,
+        ...state,
         pokemons: order,
       };
     }
     case FILTER_TYPE: {
-      let copy = [...state.pokemons];
+      let copy = [...state.allPoke];
       let types = [];
 
       copy.map((e) => {
@@ -81,29 +81,32 @@ const rootReducer = (state = initialState, action) => {
             }
           });
         } else if (action.payload === "TYPES") {
-          types = [...state.pokemons];
+          types = [...state.allPoke];
         }
         return e.type;
         //capaz esto
       });
 
       return {
+        ...state,
         pokemons: types,
       };
     }
     case FILTER_POKEMONS: {
-      let copy = [...state.pokemons];
+      // console.log(state.pokemons);
+      // let copy = [...state.pokemons];
       let filterPoke;
       if (action.payload === "created") {
-        filterPoke = copy.filter((e) => e.id.length > 5);
+        filterPoke = state.allPoke.filter((e) => e.id.toString().length > 5);
       }
       if (action.payload === "api") {
-        filterPoke = copy.filter((e) => e.id.length < 3);
+        filterPoke = state.allPoke.filter((e) => e.id.toString().length < 3);
       }
       if (action.payload === "POKEMONS") {
-        filterPoke = [...state.pokemons];
+        filterPoke = [...state.allPoke];
       }
       return {
+        ...state,
         pokemons: filterPoke,
       };
     }

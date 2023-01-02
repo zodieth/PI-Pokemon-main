@@ -29,20 +29,44 @@ function Card(props) {
           )}
         </div>
         <Route exact path={"/pokemons/id/:id"}>
-          <div className={style.health}>health: {props.health}</div>
-          <div className={style.attack}>attack: {props.attack}</div>
-          <div className={style.defense}>defense: {props.defense}</div>
-          <div className={style.velocity}>velocity: {props.velocity}</div>
-          <div className={style.height}>height: {props.height}</div>
-          <div className={style.weight}>weight: {props.weight}</div>
+          <div className={style.health}>
+            {!props.health ? "" : <div>health:{props.health}</div>}
+          </div>
+          <div className={style.attack}>
+            {!props.attack ? "" : <div>attack:{props.attack}</div>}
+          </div>
+          <div className={style.defense}>
+            {!props.defense ? "" : <div>defense:{props.defense}</div>}
+          </div>
+          <div className={style.velocity}>
+            {!props.velocity ? "" : <div>velocity:{props.velocity}</div>}
+          </div>
+          <div className={style.height}>
+            {!props.height ? "" : <div>height:{props.height}</div>}
+          </div>
+          <div className={style.weight}>
+            {!props.weight ? "" : <div>weight:{props.weight}</div>}
+          </div>
         </Route>
         <Route exact path={"/pokemon/:name"}>
-          <div className={style.health}>health: {props.health}</div>
-          <div className={style.attack}>attack: {props.attack}</div>
-          <div className={style.defense}>defense: {props.defense}</div>
-          <div className={style.velocity}>velocity: {props.velocity}</div>
-          <div className={style.height}>height: {props.height}</div>
-          <div className={style.weight}>weight: {props.weight}</div>
+          <div className={style.health}>
+            {!props.health ? "" : <div>health:{props.health}</div>}
+          </div>
+          <div className={style.attack}>
+            {!props.attack ? "" : <div>attack:{props.attack}</div>}
+          </div>
+          <div className={style.defense}>
+            {!props.defense ? "" : <div>defense:{props.defense}</div>}
+          </div>
+          <div className={style.velocity}>
+            {!props.velocity ? "" : <div>velocity:{props.velocity}</div>}
+          </div>
+          <div className={style.height}>
+            {!props.height ? "" : <div>height:{props.height}</div>}
+          </div>
+          <div className={style.weight}>
+            {!props.weight ? "" : <div>weight:{props.weight}</div>}
+          </div>
         </Route>
       </div>
     </div>

@@ -29,7 +29,6 @@ function Form() {
   const [type, setType] = useState("");
 
   const dispatch = useDispatch();
-
   const pokemon = {
     name,
     img,
@@ -42,7 +41,7 @@ function Form() {
     type,
   };
 
-  const validate = (
+  const validate = async (
     name,
     img,
     health,
@@ -53,11 +52,15 @@ function Form() {
     weight,
     type
   ) => {
+    const error = [];
+
     if (name.length <= 3) {
-      alert("name must have more than 3 characters");
-    } else if (img > 3) {
-      alert("must provide an image");
-    } else if (
+      error.push("name must have more than 3 characters");
+    }
+    if (img > 3) {
+      error.push("must provide an image");
+    }
+    if (
       health < 1 ||
       attack < 1 ||
       defense < 1 ||
@@ -65,11 +68,19 @@ function Form() {
       height < 1 ||
       weight < 1
     ) {
-      alert("must be at least 1 type");
-    } else if (!type) {
-      alert("must be at least 1 type");
+      alert("aaaa");
+    }
+    if (type.length === 0) {
+      error.push("must be at least 1 type");
+    }
+
+    if (error.length === 0) {
+      const create = await createPokemon(pokemon);
+
+      // createPokemon(pokemon);
+      alert(create);
     } else {
-      dispatch(createPokemon(pokemon));
+      alert(error);
     }
     // else if (health < 1) {
     //   alert("health must be at least 1");
@@ -114,7 +125,7 @@ function Form() {
       weight,
       type
     );
-    console.log(pokemon);
+    // console.log(pokemon);
   };
 
   return (
@@ -129,7 +140,7 @@ function Form() {
               name="name"
               placeholder="Name..."
               type="text"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value.toLowerCase())}
             />
           </label>
           <label htmlFor="">
@@ -202,7 +213,7 @@ function Form() {
               name="img"
               placeholder="Url.."
               type="text"
-              onChange={(e) => setImg(e.target.value.toLowerCase())}
+              onChange={(e) => setImg(e.target.value)}
             />
           </label>
           <label htmlFor="">

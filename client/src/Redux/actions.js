@@ -52,10 +52,11 @@ export const filterPokemons = (payload) => {
   };
 };
 
-export const createPokemon = (payload) => {
-  axios.post("http://localhost:3001/pokemons", payload);
-
-  return {
-    type: CREATE_POKEMON,
-  };
+export const createPokemon = async (payload) => {
+  const poke = await axios.post("http://localhost:3001/pokemons", payload);
+  // console.log(poke.data);
+  return poke.data;
+  // return {
+  //   type: CREATE_POKEMON,
+  // };
 };

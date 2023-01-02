@@ -46,27 +46,42 @@ PokemonRouter.get("/id/:id", async (req, res) => {
 PokemonRouter.post("/", postPokemonMiddleware, async (req, res) => {
   const { name, type, img, health, attack, defense, velocity, height, weight } =
     req.body;
-  const newPokemon = await Pokemon.create({
-    name: name.toLowerCase(),
-    type: type,
-    img: img,
-    health,
-    attack,
-    defense,
-    velocity,
-    height,
-    weight,
-  });
 
-  const typePoke = await Type.findAll({
-    where: {
-      name: type,
-    },
-  });
+  try {
+    // const db = await Pokemon.findAll({
+    //   where: {
+    //     name: name,
+    //   },
+    // });
 
-  newPokemon.addType(typePoke);
+    // if (!db) {
+    const newPokemon = await Pokemon.create({
+      name: name.toLowerCase(),
+      type: type,
+      img: img,
+      health,
+      attack,
+      defense,
+      velocity,
+      height,
+      weight,
+    });
 
-  res.json(newPokemon);
+    const typePoke = await Type.findAll({
+      where: {
+        name: type,
+      },
+    });
+
+    newPokemon.addType(typePoke);
+
+    res.json("CREADO");
+    // } else {
+    //   res.send("ya creado");
+    // }
+  } catch (error) {
+    res.send("ya creado");
+  }
 });
 
 module.exports = PokemonRouter;

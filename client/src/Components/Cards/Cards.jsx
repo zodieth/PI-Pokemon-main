@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "../Card/Card";
-import { getAllPokemons, filterOrder, filterType } from "../../Redux/actions";
+import {
+  getAllPokemons,
+  filterOrder,
+  filterType,
+  filterPokemons,
+} from "../../Redux/actions";
 import { Link } from "react-router-dom";
 import style from "./cards.module.css";
 import Paginado from "../Paginado/Paginado";
@@ -42,6 +47,14 @@ function Cards() {
       e.preventDefault();
     } else {
       dispatch(filterType(e.target.value));
+    }
+  };
+
+  const handleChange3 = (e) => {
+    if (!e.target.value.length) {
+      e.preventDefault();
+    } else {
+      dispatch(filterPokemons(e.target.value));
     }
   };
   return (
@@ -86,6 +99,13 @@ function Cards() {
             <option value="fairy">FAIRY</option>
             <option value="unknown">UNKNOWN</option>
             <option value="shadow">SHADOW</option>
+          </select>
+        </div>
+        <div className={style.filters}>
+          <select onChange={handleChange3}>
+            <option>POKEMONS</option>
+            <option value="created">CREATED</option>
+            <option value="api">API</option>
           </select>
         </div>
       </div>

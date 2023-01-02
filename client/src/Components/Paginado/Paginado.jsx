@@ -23,7 +23,7 @@ function Paginado({ paginado, pokemonsPerPage, pokemonsState, current }) {
         </li>
         {pageNumbers &&
           pageNumbers.map((number) => (
-            <div>
+            <div key={number}>
               <li className={style.number} key={number}>
                 <button
                   className={style.button}

@@ -9,6 +9,9 @@
   margin: 3rem;
 }
 
+body {
+  background-color: #24252a;
+}
 .paginado_filters {
   display: inline-flex;
 }
@@ -24,7 +27,7 @@ select {
   margin-top: 1rem;
   margin-left: 0.5rem;
   margin-right: 0.5rem;
-  width: 8rem;
+  width: 10rem;
 
   padding: 6px 20px;
   background-color: rgb(230, 57, 70);

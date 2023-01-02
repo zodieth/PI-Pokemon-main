@@ -4,7 +4,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background-color: #24252a;
+  /* background-color: #24252a; */
 }
 
 li,
@@ -28,6 +28,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #24252a;
 }
 
 .form {
@@ -38,6 +39,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #24252a;
 }
 
 .logo {

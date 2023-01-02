@@ -50,12 +50,12 @@ PokemonRouter.post("/", postPokemonMiddleware, async (req, res) => {
     name: name.toLowerCase(),
     type: type,
     img: img,
-    // health,
-    // attack,
-    // defense,
-    // velocity,
-    // height,
-    // weight,
+    health,
+    attack,
+    defense,
+    velocity,
+    height,
+    weight,
   });
 
   const typePoke = await Type.findAll({

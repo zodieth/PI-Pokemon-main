@@ -42,10 +42,10 @@ function Detail() {
                   name={e.name}
                   img={e.img}
                   type={e.type}
-                  life={e.life}
-                  strength={e.strength}
+                  health={e.health}
+                  attack={e.attack}
                   defense={e.defense}
-                  speed={e.speed}
+                  velocity={e.velocity}
                   height={e.height}
                   weight={e.weight}
                 />

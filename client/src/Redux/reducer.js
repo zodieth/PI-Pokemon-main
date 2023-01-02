@@ -4,6 +4,7 @@ import {
   GET_POKEMONS_NAME,
   FILTER_ORDER,
   FILTER_TYPE,
+  FILTER_POKEMONS,
 } from "./actions";
 export let initialState = {
   allPoke: [],
@@ -90,9 +91,22 @@ const rootReducer = (state = initialState, action) => {
         pokemons: types,
       };
     }
-    // case CREATE_POKEMON: {
-
-    // }
+    case FILTER_POKEMONS: {
+      let copy = [...state.pokemons];
+      let filterPoke;
+      if (action.payload === "created") {
+        filterPoke = copy.filter((e) => e.id.length > 5);
+      }
+      if (action.payload === "api") {
+        filterPoke = copy.filter((e) => e.id.length < 3);
+      }
+      if (action.payload === "POKEMONS") {
+        filterPoke = [...state.pokemons];
+      }
+      return {
+        pokemons: filterPoke,
+      };
+    }
     default:
       return state;
   }

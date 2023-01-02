@@ -39,10 +39,10 @@ async function getAllPokemons() {
                   : data2.types[0]
                   ? [data2.types[0].type.name]
                   : "nothing",
-              life: data1.stats[0].base_stat,
-              strength: data1.stats[1].base_stat,
+              health: data1.stats[0].base_stat,
+              attack: data1.stats[1].base_stat,
               defense: data1.stats[2].base_stat,
-              speed: data1.stats[3].base_stat,
+              velocity: data1.stats[3].base_stat,
               height: data1.height,
               weight: data1.weight,
             };
@@ -84,10 +84,10 @@ async function getAllPokemons() {
                   : data2.types[0]
                   ? [data2.types[0].type.name]
                   : "nothing",
-              life: data1.stats[0].base_stat,
-              strength: data1.stats[1].base_stat,
+              health: data1.stats[0].base_stat,
+              attack: data1.stats[1].base_stat,
               defense: data1.stats[2].base_stat,
-              speed: data1.stats[3].base_stat,
+              velocity: data1.stats[3].base_stat,
               height: data1.height,
               weight: data1.weight,
             };

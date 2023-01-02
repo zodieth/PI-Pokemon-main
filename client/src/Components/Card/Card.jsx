@@ -1,5 +1,6 @@
 import React from "react";
 import style from "./card.module.css";
+import { Route } from "react-router-dom";
 
 function Card(props) {
   return (
@@ -27,12 +28,22 @@ function Card(props) {
             ""
           )}
         </div>
-        <div className={style.life}>{props.life}</div>
-        <div className={style.strength}>{props.strength}</div>
-        <div className={style.defense}>{props.defense}</div>
-        <div className={style.speed}>{props.speed}</div>
-        <div className={style.height}>{props.height}</div>
-        <div className={style.weight}>{props.weight}</div>
+        <Route exact path={"/pokemons/id/:id"}>
+          <div className={style.health}>health: {props.health}</div>
+          <div className={style.attack}>attack: {props.attack}</div>
+          <div className={style.defense}>defense: {props.defense}</div>
+          <div className={style.velocity}>velocity: {props.velocity}</div>
+          <div className={style.height}>height: {props.height}</div>
+          <div className={style.weight}>weight: {props.weight}</div>
+        </Route>
+        <Route exact path={"/pokemon/:name"}>
+          <div className={style.health}>health: {props.health}</div>
+          <div className={style.attack}>attack: {props.attack}</div>
+          <div className={style.defense}>defense: {props.defense}</div>
+          <div className={style.velocity}>velocity: {props.velocity}</div>
+          <div className={style.height}>height: {props.height}</div>
+          <div className={style.weight}>weight: {props.weight}</div>
+        </Route>
       </div>
     </div>
   );

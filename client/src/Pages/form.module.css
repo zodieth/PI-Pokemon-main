@@ -3,11 +3,43 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100vh;
+  background: linear-gradient(
+      rgba(255, 255, 255, 0.7),
+      rgba(255, 255, 255, 0.3)
+    ),
+    url("https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/hc_1440x810/public/media/image/2021/07/pokemon-unite-2414165.jpg?itok=rTPbq4C8");
+  background-size: cover;
+  background-position: center;
 }
 
-/* .container {
+form {
+  color: black;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 30px 60px;
+  border-radius: 10px;
+}
+
+.type {
+  margin-bottom: 1rem;
+}
+
+.input {
+  margin: 0.5rem;
+  color: black;
+  border-radius: 5px;
+  border: 1.5px solid black;
+}
+
+.input::placeholder {
+  padding-left: 0.25rem;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5rem;
-} */
+}
+
+.submit {
+  margin: 0.5rem;
+}

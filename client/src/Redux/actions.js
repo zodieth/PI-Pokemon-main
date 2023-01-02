@@ -5,6 +5,7 @@ export const GET_POKEMONS_NAME = "GET_POKEMONS_NAME";
 export const FILTER_ORDER = "FILTER_ORDER";
 export const FILTER_TYPE = "FILTER_TYPE";
 export const CREATE_POKEMON = "CREATE_POKEMON";
+export const FILTER_POKEMONS = "FILTER_POKEMONS";
 
 export const getAllPokemons = () => {
   return async (dispatch) => {
@@ -40,6 +41,13 @@ export const filterOrder = (payload) => {
 export const filterType = (payload) => {
   return {
     type: FILTER_TYPE,
+    payload,
+  };
+};
+
+export const filterPokemons = (payload) => {
+  return {
+    type: FILTER_POKEMONS,
     payload,
   };
 };

@@ -1,0 +1,14 @@
+.home {
+  align-items: center;
+  margin-top: 30rem;
+  width: 10rem;
+
+  padding: 6px 20px;
+  background-color: rgb(230, 57, 70);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease 0s;
+  display: inline-block;
+  color: white;
+}

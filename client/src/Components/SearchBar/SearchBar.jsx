@@ -1,11 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import style from "./searchBar.module.css";
-import { searchName } from "../../Redux/actions";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-
-// import { searchName } from "../../Redux/actions";
 
 function SearchBar() {
   const [input, setInput] = useState("");

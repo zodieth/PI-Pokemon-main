@@ -27,6 +27,12 @@ function Card(props) {
             ""
           )}
         </div>
+        <div className={style.life}>{props.life}</div>
+        <div className={style.strength}>{props.strength}</div>
+        <div className={style.defense}>{props.defense}</div>
+        <div className={style.speed}>{props.speed}</div>
+        <div className={style.height}>{props.height}</div>
+        <div className={style.weight}>{props.weight}</div>
       </div>
     </div>
   );

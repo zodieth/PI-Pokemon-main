@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import Card from "../Card/Card";
-import { getAllPokemons, filterOrder } from "../../Redux/actions";
+import { getAllPokemons, filterOrder, filterType } from "../../Redux/actions";
 import { Link } from "react-router-dom";
 import style from "./cards.module.css";
 import Paginado from "../Paginado/Paginado";
@@ -37,6 +37,13 @@ function Cards() {
     }
   };
 
+  const handleChange2 = (e) => {
+    if (!e.target.value.length) {
+      e.preventDefault();
+    } else {
+      dispatch(filterType(e.target.value));
+    }
+  };
   return (
     <div>
       <div className={style.paginado_filters}>
@@ -45,13 +52,40 @@ function Cards() {
             pokemonsPerPage={pokemonsPerPage}
             pokemonsState={pokemonsState.length}
             paginado={paginado}
+            current={currentPage}
           />
         </div>
         <div className={style.filters}>
           <select onChange={handleChange}>
-            <option>FILTERS</option>
-            <option value="A-Z">A-Z</option>
-            <option value="Z-A">Z-A</option>
+            <option>ORDER</option>
+            <option value="A-Z">UPWARD</option>
+            <option value="Z-A">DOWNWARD</option>
+          </select>
+        </div>
+        <div className={style.filters}>
+          <select onChange={handleChange}>
+            <option>ATTACK</option>
+            <option value="UP">UPWARD</option>
+            <option value="DOWN">DOWNWARD</option>
+          </select>
+        </div>
+        <div className={style.filters}>
+          <select onChange={handleChange2}>
+            <option value="TYPES">TYPES</option>
+            <option value="bug">BUG</option>
+            <option value="ghost">GHOST</option>
+            <option value="steel">STEEL</option>
+            <option value="fire">FIRE</option>
+            <option value="water">WATER</option>
+            <option value="grass">GRASS</option>
+            <option value="electric">ELECTRIC</option>
+            <option value="psychic">PSYCHCIC</option>
+            <option value="ice">ICE</option>
+            <option value="dragon">DRAGON</option>
+            <option value="dark">DARK</option>
+            <option value="fairy">FAIRY</option>
+            <option value="unknown">UNKNOWN</option>
+            <option value="shadow">SHADOW</option>
           </select>
         </div>
       </div>

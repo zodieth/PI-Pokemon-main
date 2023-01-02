@@ -3,6 +3,7 @@ import {
   GET_POKEMONS_ID,
   GET_POKEMONS_NAME,
   FILTER_ORDER,
+  FILTER_TYPE,
 } from "./actions";
 export let initialState = {
   allPoke: [],
@@ -48,6 +49,18 @@ const rootReducer = (state = initialState, action) => {
         });
       } else if (action.payload === "FILTERS") {
         order = [...state.pokemons];
+      } else if (action.payload === "UP") {
+        order = copyPokemons.sort((a, b) => {
+          if (a.strenght > b.strenght) return 1;
+          else return -1;
+        });
+      } else if (action.payload === "DOWN") {
+        order = copyPokemons.sort((a, b) => {
+          if (a.strenght > b.strenght) return -1;
+          else return -1;
+        });
+      } else if (action.payload === "ATTACK") {
+        order = [...state.pokemons];
       }
 
       return {
@@ -55,6 +68,31 @@ const rootReducer = (state = initialState, action) => {
         pokemons: order,
       };
     }
+    case FILTER_TYPE: {
+      let copy = [...state.pokemons];
+      let types = [];
+
+      copy.map((e) => {
+        if (e.type) {
+          e.type.forEach((type) => {
+            if (type === action.payload) {
+              types.push(e);
+            }
+          });
+        } else if (action.payload === "TYPES") {
+          types = [...state.pokemons];
+        }
+        return e.type;
+        //capaz esto
+      });
+
+      return {
+        pokemons: types,
+      };
+    }
+    // case CREATE_POKEMON: {
+
+    // }
     default:
       return state;
   }

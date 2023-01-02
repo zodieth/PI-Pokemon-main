@@ -3,16 +3,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getPokemonId } from "../Redux/actions";
 import NavBar from "../Components/NavBar/NavBar";
-import Card from "../Components/Card/Card";
 import style from "./detail.module.css";
 import "./loadingSpin.css";
+import Card from "../Components/Card/Card";
 
 function Detail() {
   const dispatch = useDispatch();
   const { id } = useParams();
   useEffect(() => {
     dispatch(getPokemonId(id));
-  }, [dispatch]);
+  }, [dispatch, id]);
 
   const iDState = useSelector((state) => state.pokemonById);
 
@@ -36,8 +36,19 @@ function Detail() {
         {showComponentCard && (
           <div>
             {iDState.length > 0 ? (
-              iDState.map((c) => (
-                <Card key={c.id} name={c.name} img={c.img} type={c.type} />
+              iDState.map((e) => (
+                <Card
+                  key={e.id}
+                  name={e.name}
+                  img={e.img}
+                  type={e.type}
+                  life={e.life}
+                  strength={e.strength}
+                  defense={e.defense}
+                  speed={e.speed}
+                  height={e.height}
+                  weight={e.weight}
+                />
               ))
             ) : (
               <div className="loading"></div>

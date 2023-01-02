@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Card from "../Components/Card/Card";
+
 import { searchName } from "../Redux/actions";
 import { useDispatch } from "react-redux";
 import NavBar from "../Components/NavBar/NavBar";
@@ -17,7 +18,7 @@ function Name() {
     dispatch(searchName(name));
   }, [dispatch, name]);
 
-  const nameState = useSelector((state) => state.pokemonByName);
+  let nameState = useSelector((state) => state.pokemonByName);
 
   const [showComponent, setComponent] = useState(true);
   const [showComponentCard, setComponentCard] = useState(false);
@@ -36,10 +37,23 @@ function Name() {
         {showComponent && <div className="loading"></div>}
         {showComponentCard && (
           <div>
-            {nameState ? (
+            {!nameState ? (
+              <div>not found</div>
+            ) : nameState ? (
               nameState.map((e) => {
                 return (
-                  <Card key={e.id} name={e.name} img={e.img} type={e.type} />
+                  <Card
+                    key={e.id}
+                    name={e.name}
+                    img={e.img}
+                    type={e.type}
+                    life={e.life}
+                    strength={e.strength}
+                    defense={e.defense}
+                    speed={e.speed}
+                    height={e.height}
+                    weight={e.weight}
+                  />
                 );
               })
             ) : (

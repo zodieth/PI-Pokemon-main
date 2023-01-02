@@ -3,6 +3,8 @@ export const GET_POKEMONS = "GET_POKEMONS";
 export const GET_POKEMONS_ID = "GET_POKEMONS_ID";
 export const GET_POKEMONS_NAME = "GET_POKEMONS_NAME";
 export const FILTER_ORDER = "FILTER_ORDER";
+export const FILTER_TYPE = "FILTER_TYPE";
+export const CREATE_POKEMON = "CREATE_POKEMON";
 
 export const getAllPokemons = () => {
   return async (dispatch) => {
@@ -35,9 +37,17 @@ export const filterOrder = (payload) => {
   };
 };
 
-// export const createRecipe = (payload) => {
-//   return {
-//     type: CREATE_RECIPE,
-//     payload,
-//   };
-// };
+export const filterType = (payload) => {
+  return {
+    type: FILTER_TYPE,
+    payload,
+  };
+};
+
+export const createPokemon = (payload) => {
+  axios.post("http://localhost:3001/pokemons", payload);
+
+  return {
+    type: CREATE_POKEMON,
+  };
+};

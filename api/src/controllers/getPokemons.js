@@ -6,6 +6,11 @@ const { Pokemon, Type } = require("../db");
 const { getAllTypes } = require("./getTypes");
 
 async function getAllPokemons() {
+  const typeDb = await Type.findAll();
+  if (!typeDb.length) {
+    await getAllTypes();
+  }
+
   const firstPetition = async () => {
     const api1 = await fetch(`https://pokeapi.co/api/v2/pokemon/`)
       .then((res) => res.json())

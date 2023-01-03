@@ -6,6 +6,8 @@ import Detail from "./Pages/Detail";
 import Form from "./Pages/Form";
 import Name from "./Pages/Name";
 import About from "./Pages/About";
+import axios from "axios";
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   return (

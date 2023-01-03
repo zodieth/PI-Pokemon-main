@@ -9,14 +9,14 @@ export const FILTER_POKEMONS = "FILTER_POKEMONS";
 
 export const getAllPokemons = () => {
   return async (dispatch) => {
-    const pokemons = await axios.get("http://localhost:3001/pokemons");
+    const pokemons = await axios.get("/pokemons");
     dispatch({ type: GET_POKEMONS, payload: pokemons.data });
   };
 };
 
 export const getPokemonId = (id) => {
   return async (dispatch) => {
-    const pokemon = await axios.get(`http://localhost:3001/pokemons/id/${id}`);
+    const pokemon = await axios.get(`/pokemons/id/${id}`);
     // console.log("aaaa", pokemon);
     dispatch({ type: GET_POKEMONS_ID, payload: pokemon.data });
   };
@@ -24,9 +24,7 @@ export const getPokemonId = (id) => {
 
 export const searchName = (name) => {
   return async (dispatch) => {
-    const pokemon = await axios.get(
-      `http://localhost:3001/pokemons?name=${name}`
-    );
+    const pokemon = await axios.get(`/pokemons?name=${name}`);
     dispatch({ type: GET_POKEMONS_NAME, payload: pokemon.data });
   };
 };
@@ -53,7 +51,7 @@ export const filterPokemons = (payload) => {
 };
 
 export const createPokemon = async (payload) => {
-  const poke = await axios.post("http://localhost:3001/pokemons", payload);
+  const poke = await axios.post("/pokemons", payload);
   // console.log(poke.data);
   return poke.data;
   // return {

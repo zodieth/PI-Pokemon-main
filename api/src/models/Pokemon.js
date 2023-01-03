@@ -20,43 +20,31 @@ module.exports = (sequelize) => {
     },
     health: {
       type: DataTypes.INTEGER,
-      // allowNull: false,
-      // unique: true,
+      allowNull: false,
     },
     attack: {
       type: DataTypes.INTEGER,
-      // allowNull: false,
-      // unique: true,
+      allowNull: false,
     },
     defense: {
       type: DataTypes.INTEGER,
-      // allowNull: false,
-      // unique: true,
+      allowNull: false,
     },
     velocity: {
       type: DataTypes.INTEGER,
-      // allowNull: false,
-      // unique: true,
+      allowNull: false,
     },
     height: {
       type: DataTypes.INTEGER,
-      // allowNull: false,
-      // unique: true,
+      allowNull: false,
     },
     weight: {
       type: DataTypes.INTEGER,
-      // allowNull: false,
-      // unique: true,
+      allowNull: false,
     },
     type: {
       type: DataTypes.ARRAY(DataTypes.STRING),
       allowNull: false,
-      // unique: true,
     },
-    // type: {
-    //   type: DataTypes.STRING,
-    //   allowNull: false,
-    //   // unique: true,
-    // },
   });
 };

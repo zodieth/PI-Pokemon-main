@@ -6,18 +6,6 @@ import NavBar from "../Components/NavBar/NavBar";
 import style from "./form.module.css";
 
 function Form() {
-  // const [input, setInput] = useState({
-  //   name: "",
-  //   img: "",
-  //   health: "",
-  //   attack: "",
-  //   defense: "",
-  //   velocity: "",
-  //   height: "",
-  //   weight: "",
-  //   type: types,
-  // });
-
   const [name, setName] = useState("");
   const [img, setImg] = useState("");
   const [health, setHealth] = useState(0);
@@ -26,7 +14,8 @@ function Form() {
   const [velocity, setVelocity] = useState(0);
   const [height, setheight] = useState(0);
   const [weight, setWeight] = useState(0);
-  const [type, setType] = useState("");
+  const [type, setType] = useState([]);
+  console.log(type);
 
   // const dispatch = useDispatch();
   const pokemon = {
@@ -79,6 +68,14 @@ function Form() {
     }
   };
 
+  const handleDeleteType = (ty) => {
+    console.log(ty.target.outerText);
+    setType(
+      // ...type,
+      type.filter((e) => e !== ty.target.outerText)
+    );
+  };
+
   return (
     <div className={style.container}>
       <NavBar />
@@ -113,58 +110,42 @@ function Form() {
               name="type"
             >
               <option>TYPES</option>
-              <option name="bug">bug</option>
-              <option name="ghost">ghost</option>
-              <option name="steel">steel</option>
-              <option name="fire">fire</option>
-              <option name="water">water</option>
-              <option name="grass">grass</option>
-              <option name="electric">electric</option>
-              <option name="psychic">psychic</option>
-              <option name="ice">ice</option>
-              <option name="dragon">dragon</option>
-              <option name="dark">dark</option>
-              <option name="fairy">fairy</option>
-              <option name="unknown">unknown</option>
-              <option name="shadow">shadow</option>
+              {!type.includes("bug") && <option name="bug">bug</option>}
+              {!type.includes("ghost") && <option name="ghost">ghost</option>}
+              {!type.includes("steel") && <option name="steel">steel</option>}
+              {!type.includes("fire") && <option name="fire">fire</option>}
+              {!type.includes("water") && <option name="water">water</option>}
+              {!type.includes("grass") && <option name="grass">grass</option>}
+              {!type.includes("electric") && (
+                <option name="electric">electric</option>
+              )}
+              {!type.includes("psychic") && (
+                <option name="psychic">psychic</option>
+              )}
+              {!type.includes("ice") && <option name="ice">ice</option>}
+              {!type.includes("dragon") && (
+                <option name="dragon">dragon</option>
+              )}
+              {!type.includes("dark") && <option name="dark">dark</option>}
+              {!type.includes("fairy") && <option name="fairy">fairy</option>}
+              {!type.includes("unknown") && (
+                <option name="unknown">unknown</option>
+              )}
+              {!type.includes("shadow") && (
+                <option name="shadow">shadow</option>
+              )}
             </select>
           </label>
           <div className={style.types}>
-            {type[0] && type[1] && type[2] ? (
-              <div>
-                <div>
-                  {type[0]}
-                  <div className={style.delete}>X</div>
-                </div>
-                <div>
-                  {type[1]} <div className={style.delete}>X</div>
-                </div>
-                <div>
-                  {type[2]}
-                  <div className={style.delete}>X</div>
-                </div>
-              </div>
-            ) : type[0] && type[1] ? (
-              <div>
-                <div>
-                  {type[0]}
-                  <div className={style.delete}>X</div>
-                </div>
-                <div>
-                  {type[1]}
-                  <div className={style.delete}>X</div>
-                </div>
-              </div>
-            ) : type[0] ? (
-              <div>
-                <div>
-                  {type[0]}
-                  <div className={style.delete}>X</div>
-                </div>
-              </div>
-            ) : (
-              ""
-            )}
+            {type
+              ? type.map((e) => (
+                  <div key={e}>
+                    <div onClick={handleDeleteType} className={style.delete}>
+                      {e}
+                    </div>
+                  </div>
+                ))
+              : ""}
           </div>
           {Error && !type ? (
             <div className={style.error}>must provide at least 1 type</div>

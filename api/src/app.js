@@ -19,7 +19,7 @@ server.use(morgan("dev"));
 server.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://pi-pokemon-main-3ie6t8jfy-zodieth.vercel.app"
+    "https://pi-pokemon-main-sigma.vercel.app/"
     // "http://localhost:3000"
   ); // "https://pi-pokemon-main-3ie6t8jfy-zodieth.vercel.app",
 

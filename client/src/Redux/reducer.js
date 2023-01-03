@@ -40,25 +40,25 @@ const rootReducer = (state = initialState, action) => {
       let order;
       if (action.payload === "A-Z") {
         order = copyPokemons.sort((a, b) => {
-          if (a.name.toUpperCase() > b.name.toUpperCase()) return 1;
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
           else return -1;
         });
       } else if (action.payload === "Z-A") {
         order = copyPokemons.sort((a, b) => {
-          if (a.name.toUpperCase() > b.name.toUpperCase()) return -1;
-          else return -1;
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+          else return 1;
         });
       } else if (action.payload === "ORDER") {
         order = [...state.pokemons];
       } else if (action.payload === "UP") {
         order = copyPokemons.sort((a, b) => {
-          if (a.strenght > b.strenght) return 1;
+          if (a.attack < b.attack) return 1;
           else return -1;
         });
       } else if (action.payload === "DOWN") {
         order = copyPokemons.sort((a, b) => {
-          if (a.strenght > b.strenght) return -1;
-          else return -1;
+          if (a.attack < b.attack) return -1;
+          else return 1;
         });
       } else if (action.payload === "ATTACK") {
         order = [...state.allPoke];

@@ -55,22 +55,22 @@ function Form() {
     if (!type) {
       setError(true);
     }
-    if (health == 0) {
+    if (health === 0) {
       setError(true);
     }
-    if (attack == 0) {
+    if (attack === 0) {
       setError(true);
     }
-    if (defense == 0) {
+    if (defense === 0) {
       setError(true);
     }
-    if (velocity == 0) {
+    if (velocity === 0) {
       setError(true);
     }
-    if (height == 0) {
+    if (height === 0) {
       setError(true);
     }
-    if (weight == 0) {
+    if (weight === 0) {
       setError(true);
     } else {
       const create = await createPokemon(pokemon);
@@ -203,7 +203,7 @@ function Form() {
             />
             {health}
           </label>
-          {Error && health == 0 ? (
+          {Error && health === 0 ? (
             <div className={style.error}>Health needs to be at least 1</div>
           ) : (
             ""
@@ -225,7 +225,7 @@ function Form() {
             />
             {attack}
           </label>
-          {Error && attack == 0 ? (
+          {Error && attack === 0 ? (
             <div className={style.error}>Attack needs to be at least 1</div>
           ) : (
             ""
@@ -245,7 +245,7 @@ function Form() {
             />
             {defense}
           </label>
-          {Error && defense == 0 ? (
+          {Error && defense === 0 ? (
             <div className={style.error}>Defense needs to be at least 1</div>
           ) : (
             ""
@@ -265,7 +265,7 @@ function Form() {
             />
             {velocity}
           </label>
-          {Error && velocity == 0 ? (
+          {Error && velocity === 0 ? (
             <div className={style.error}>Velocity needs to be at least 1</div>
           ) : (
             ""
@@ -285,7 +285,7 @@ function Form() {
             />
             {height}
           </label>
-          {Error && height == 0 ? (
+          {Error && height === 0 ? (
             <div className={style.error}>Height needs to be at least 1</div>
           ) : (
             ""
@@ -305,7 +305,7 @@ function Form() {
             />
             {weight}
           </label>
-          {Error && weight == 0 ? (
+          {Error && weight === 0 ? (
             <div className={style.error}>Weight needs to be at least 1</div>
           ) : (
             ""

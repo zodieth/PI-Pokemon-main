@@ -5,8 +5,6 @@ import { getPokemonId } from "../Redux/actions";
 import NavBar from "../Components/NavBar/NavBar";
 import style from "./detail.module.css";
 import "./loadingSpin.css";
-// import Card from "../Components/Card/Card";
-import { Route } from "react-router-dom";
 
 function Detail() {
   const dispatch = useDispatch();

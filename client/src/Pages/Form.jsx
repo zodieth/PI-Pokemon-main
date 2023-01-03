@@ -1,6 +1,6 @@
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { createPokemon } from "../Redux/actions";
 import NavBar from "../Components/NavBar/NavBar";
 import style from "./form.module.css";
@@ -28,7 +28,7 @@ function Form() {
   const [weight, setWeight] = useState(0);
   const [type, setType] = useState("");
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const pokemon = {
     name,
     img,

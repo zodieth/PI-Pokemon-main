@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+// import React, { useState, useEffect } from "react";
 import "../Components/loadingSpin.css";
 import { Link } from "react-router-dom";
 import style from "./landing.module.css";
 import "../App.css";
 function Landing() {
-  const [showComponent, setComponent] = useState(true);
-  const [showComponentButton, setComponentButton] = useState(false);
+  // const [showComponent, setComponent] = useState(true);
+  // const [showComponentButton, setComponentButton] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setComponent(false);
-      setComponentButton(true);
-    }, 1000);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setComponent(false);
+  //     setComponentButton(true);
+  //   }, 1000);
+  // }, []);
 
   return (
     <div className="landing">

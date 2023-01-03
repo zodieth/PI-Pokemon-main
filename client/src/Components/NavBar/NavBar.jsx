@@ -24,6 +24,12 @@ function NavBar() {
           </Link>
         </Route>
 
+        <Route exact path="/about">
+          <Link to="/home">
+            <img className={style.logo} src={logo} alt="" />
+          </Link>
+        </Route>
+
         <Route exact path="/form">
           <Link to="/home">
             <img className={style.logo} src={logo} alt="" />
@@ -50,6 +56,11 @@ function NavBar() {
                 </li>
               </Route>
               <Route exact path="/form">
+                <li>
+                  <Link to="/home">Home</Link>
+                </li>
+              </Route>
+              <Route exact path="/about">
                 <li>
                   <Link to="/home">Home</Link>
                 </li>

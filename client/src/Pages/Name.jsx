@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
-import Card from "../Components/Card/Card";
+// import Card from "../Components/Card/Card";
 
 import { searchName } from "../Redux/actions";
 import { useDispatch } from "react-redux";

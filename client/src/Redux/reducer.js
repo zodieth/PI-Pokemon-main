@@ -49,11 +49,11 @@ const rootReducer = (state = initialState, action) => {
           else return 1;
         });
       } else if (action.payload === "ORDER") {
-        order = [...state.pokemons];
+        order = [...state.allPoke];
       } else if (action.payload === "UP") {
         order = copyPokemons.sort((a, b) => {
-          if (a.attack < b.attack) return 1;
-          else return -1;
+          if (a.attack > b.attack) return -1;
+          else return 1;
         });
       } else if (action.payload === "DOWN") {
         order = copyPokemons.sort((a, b) => {

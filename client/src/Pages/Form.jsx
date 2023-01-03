@@ -41,91 +41,42 @@ function Form() {
     type,
   };
 
-  const validate = async (
-    name,
-    img,
-    health,
-    attack,
-    defense,
-    velocity,
-    height,
-    weight,
-    type
-  ) => {
-    const error = [];
-
-    if (name.length <= 3) {
-      error.push("name must have more than 3 characters");
-    }
-    if (img > 3) {
-      error.push("must provide an image");
-    }
-    if (
-      health < 1 ||
-      attack < 1 ||
-      defense < 1 ||
-      velocity < 1 ||
-      height < 1 ||
-      weight < 1
-    ) {
-      alert("aaaa");
-    }
-    if (type.length === 0) {
-      error.push("must be at least 1 type");
-    }
-
-    if (error.length === 0) {
-      const create = await createPokemon(pokemon);
-
-      // createPokemon(pokemon);
-      alert(create);
-    } else {
-      alert(error);
-    }
-    // else if (health < 1) {
-    //   alert("health must be at least 1");
-    // } else if (attack < 1) {
-    //   alert("attack must be at least 1");
-    // } else if (defense < 1) {
-    //   alert("defensemust be at least 1");
-    // } else if (velocity < 1) {
-    //   alert("velocity must be at least 1");
-    // } else if (height < 1) {
-    //   alert("height must be at least 1");
-    // } else if (height < 1) {
-    //   alert("height must be at least 1");
-    // } else if (weight < 1) {
-    //   alert("weight must be at least 1");
-    // } else if (type === "") {
-    //   alert("must be at least 1 type");
-    // }
-
-    // if (
-    //   health.length < 1 ||
-    //   attack.length < 1 ||
-    //   defense.length < 1 ||
-    //   velocity.length < 1 ||
-    //   height.length < 1 ||
-    //   weight.length < 1
-    // ) {
-    //   alert("length must be greater than 1");
-    // }
-  };
+  const [Error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    validate(
-      name,
-      img,
-      health,
-      attack,
-      defense,
-      velocity,
-      height,
-      weight,
-      type
-    );
-    // console.log(pokemon);
+
+    if (name.length <= 3) {
+      setError(true);
+    }
+    if (!img) {
+      setError(true);
+    }
+    if (!type) {
+      setError(true);
+    }
+    if (health == 0) {
+      setError(true);
+    }
+    if (attack == 0) {
+      setError(true);
+    }
+    if (defense == 0) {
+      setError(true);
+    }
+    if (velocity == 0) {
+      setError(true);
+    }
+    if (height == 0) {
+      setError(true);
+    }
+    if (weight == 0) {
+      setError(true);
+    } else {
+      const create = await createPokemon(pokemon);
+
+      alert(create);
+    }
   };
 
   return (
@@ -143,6 +94,15 @@ function Form() {
               onChange={(e) => setName(e.target.value.toLowerCase())}
             />
           </label>
+          <div>
+            {Error && name.length <= 3 ? (
+              <div className={style.error}>
+                name must have more than 3 characters
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
           <label htmlFor="">
             Types
             <select
@@ -206,6 +166,11 @@ function Form() {
               ""
             )}
           </div>
+          {Error && !type ? (
+            <div className={style.error}>must provide at least 1 type</div>
+          ) : (
+            ""
+          )}
           <label htmlFor="">
             Image
             <input
@@ -216,6 +181,13 @@ function Form() {
               onChange={(e) => setImg(e.target.value)}
             />
           </label>
+          <div>
+            {Error && !img ? (
+              <div className={style.error}>Image can not be null</div>
+            ) : (
+              ""
+            )}
+          </div>
           <label htmlFor="">
             Health
             <input
@@ -231,6 +203,11 @@ function Form() {
             />
             {health}
           </label>
+          {Error && health == 0 ? (
+            <div className={style.error}>Health needs to be at least 1</div>
+          ) : (
+            ""
+          )}
           <label htmlFor="">
             Attack
             <input
@@ -248,6 +225,11 @@ function Form() {
             />
             {attack}
           </label>
+          {Error && attack == 0 ? (
+            <div className={style.error}>Attack needs to be at least 1</div>
+          ) : (
+            ""
+          )}
           <label htmlFor="">
             Defense
             <input
@@ -263,6 +245,11 @@ function Form() {
             />
             {defense}
           </label>
+          {Error && defense == 0 ? (
+            <div className={style.error}>Defense needs to be at least 1</div>
+          ) : (
+            ""
+          )}
           <label htmlFor="">
             Velocity
             <input
@@ -278,6 +265,11 @@ function Form() {
             />
             {velocity}
           </label>
+          {Error && velocity == 0 ? (
+            <div className={style.error}>Velocity needs to be at least 1</div>
+          ) : (
+            ""
+          )}
           <label htmlFor="">
             Height
             <input
@@ -293,6 +285,11 @@ function Form() {
             />
             {height}
           </label>
+          {Error && height == 0 ? (
+            <div className={style.error}>Height needs to be at least 1</div>
+          ) : (
+            ""
+          )}
           <label htmlFor="">
             Weight
             <input
@@ -308,6 +305,11 @@ function Form() {
             />
             {weight}
           </label>
+          {Error && weight == 0 ? (
+            <div className={style.error}>Weight needs to be at least 1</div>
+          ) : (
+            ""
+          )}
           <button className={style.submit} type="submit">
             Submit
           </button>

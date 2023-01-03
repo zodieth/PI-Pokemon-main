@@ -75,12 +75,12 @@ PokemonRouter.post("/", postPokemonMiddleware, async (req, res) => {
 
     newPokemon.addType(typePoke);
 
-    res.json("CREADO");
+    res.json("CREATED");
     // } else {
     //   res.send("ya creado");
     // }
   } catch (error) {
-    res.send("ya creado");
+    res.send("POKEMON WITH THAT NAME ALREADY EXISTS");
   }
 });
 

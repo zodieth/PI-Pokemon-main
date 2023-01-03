@@ -59,3 +59,7 @@ form {
 .submit {
   margin: 0.5rem;
 }
+
+.error {
+  color: red;
+}

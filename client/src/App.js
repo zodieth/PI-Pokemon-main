@@ -8,7 +8,7 @@ import Name from "./Pages/Name";
 import About from "./Pages/About";
 import axios from "axios";
 axios.defaults.baseURL =
-  "https://pi-pokemon-main-production-2ec5.up.railway.app/";
+  "https://pi-pokemon-main-production-ebd8.up.railway.app/";
 // "http://localhost:3001/"
 
 function App() {
